@@ -6,9 +6,13 @@
 /*   By: opavliuk <opavliuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:07:52 by opavliuk          #+#    #+#             */
-/*   Updated: 2018/05/14 13:45:33 by opavliuk         ###   ########.fr       */
+/*   Updated: 2018/05/15 15:45:09 by opavliuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
+int		main(void)
+{
+	
+}
