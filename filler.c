@@ -6,7 +6,7 @@
 /*   By: opavliuk <opavliuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:07:52 by opavliuk          #+#    #+#             */
-/*   Updated: 2018/05/16 19:03:45 by opavliuk         ###   ########.fr       */
+/*   Updated: 2018/05/16 21:16:04 by opavliuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ static void write_coordinates(t_f *fill, int i)
 		{
 			if (LINE[n] == '*')
 			{
-				X_F[NUM] = i;
-				Y_F[NUM] = n;
+				dprintf(3, "OK!\n");
+				X_F[NUM] = i; // Здесь сегфолт! ПОЧЕМУ БЛЯТЬ!!!???
+				Y_F[NUM] = n; //
 				NUM++;
+				dprintf(3, "KO!\n");
 			}
 			n++;
 		}
@@ -44,8 +46,8 @@ static void	write_figure(t_f *fill)
 	n = ft_atoi(&(LINE[6 + ft_count(i, 10)]));
 	free(LINE);
 	dprintf(3, "i: %d\nn: %d\n", i, n);
-	X_F = (int *)malloc(sizeof(int) * ((i * n) + 1));
-	Y_F = (int *)malloc(sizeof(int) * ((i * n) + 1));
+	X_F = malloc(sizeof(int) * ((i * n) + 1));
+	Y_F = malloc(sizeof(int) * ((i * n) + 1));
 	i = 0;
 	while (get_next_line(0, &LINE) > 0)
 	{
@@ -53,6 +55,7 @@ static void	write_figure(t_f *fill)
 		free(LINE);
 		i++;
 	}
+	dprintf(3, "line: |%s|\n", LINE);
 	write_coordinates(fill, i);
 	free(LINE);
 	i = -1;
@@ -120,7 +123,7 @@ int		main(void)
 	write_map(fill);
 	write_figure(fill);
 	free(fill);
-	free(X_F);
-	free(Y_F);
+	// free(X_F);
+	// free(Y_F);
 	return (0);
 }
