@@ -6,7 +6,7 @@
 /*   By: opavliuk <opavliuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 12:40:45 by opavliuk          #+#    #+#             */
-/*   Updated: 2018/05/14 13:43:16 by opavliuk         ###   ########.fr       */
+/*   Updated: 2018/05/16 16:59:56 by opavliuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
-# include "libft.h"
 
 # define BUFF_SIZE 42
 
