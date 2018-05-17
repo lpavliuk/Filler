@@ -6,7 +6,7 @@
 /*   By: opavliuk <opavliuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 14:57:19 by opavliuk          #+#    #+#             */
-/*   Updated: 2018/05/17 15:03:09 by opavliuk         ###   ########.fr       */
+/*   Updated: 2018/05/17 16:01:46 by opavliuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,15 @@ static void	write_map(t_f *fill)
 		ft_bzero(MAP[i], Y + 1);
 		get_next_line(0, &LINE);
 		while (++n < Y)
-			MAP[i][n] = LINE[j++];
+		{
+			if (LINE[j] == '.')
+				MAP[i][n] = 0;
+				else if (LINE[j] == 'O')
+				MAP[i][n] = -1;
+			else
+				MAP[i][n] = -2;
+			j++;
+		}
 		free(LINE);
 		i++;
 	}
