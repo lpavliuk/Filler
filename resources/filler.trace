@@ -1,6 +1,5 @@
-seed = 2203
-O: error on input
-../opavliuk.filler: Segfault at 0
+seed = 3588
+O: timedout
 players/grati.filler won
 Score:
-0AGAINST0
+0AGAINST162

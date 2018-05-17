@@ -1,0 +1,1 @@
+gcc filler.c check_input.c libft/libft.a -o opavliuk.filler
