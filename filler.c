@@ -12,28 +12,49 @@
 
 #include "filler.h"
 
-// void	check_map(t_f *fill)
-// {
-// 	int i;
-// 	int j;
-// 	int x;
+static void	work_spy(t_f *fill, int i, int j, int z)
+{
+	z++;
+	if (j < Y - 1 && MAP[i][j + 1] == 0)
+		MAP[i][j + 1] = z;
+	if (j > 0 && MAP[i][j - 1] == 0)
+		MAP[i][j - 1] = z;
+	if (i < X - 1 && MAP[i + 1][j] == 0)
+		MAP[i + 1][j] = z;
+	if (i > 0 && MAP[i - 1][j] == 0)
+		MAP[i - 1][j] = z;
+}
 
-// 	i = -1;
-// 	if (SYMBL == 'o')
-// 		x = -2;
-// 	else
-// 		x = -1;
-// 	while (++i < X)
-// 	{
-// 		j = -1;
-// 		while (++j < Y)
-// 		{
-// 			if (MAP[i][j] == x)
-// 				work_spy(fill);
-// 		}
+void	check_map(t_f *fill)
+{
+	int i;
+	int j;
+	int x;
+	int z;
 
-// 	}
-// }
+	i = -1;
+	z = 0;
+	if (SYMBL == 'o')
+		x = -2;
+	else
+		x = -1;
+	while (z < (X + Y))
+	{
+		while (++i < X)
+		{
+			j = -1;
+			while (++j < Y)
+			{
+				if (MAP[i][j] == x)
+					work_spy(fill, i, j, 0);
+				else if (z > 0 && MAP[i][j] == z)
+					work_spy(fill, i, j, z);
+			}
+		}
+		i = -1;
+		z++;
+	}
+}
 
 void	write_info(t_f *fill)
 {
@@ -49,9 +70,19 @@ void	write_info(t_f *fill)
 		while (++j < Y)
 		{
 			if (MAP[i][j + 1] < 0)
-				dprintf(3, "%d ", MAP[i][j]);
+			{
+				dprintf(3, "%d", MAP[i][j]);
+				if (j >= 0 && MAP[i][j + 1] < 10)
+					dprintf(3, " ");
+			}
 			else
-				dprintf(3, "%d  ", MAP[i][j]);
+			{
+				if (MAP[i][j + 1] >= 10 || 
+					(MAP[i][j] >= 10 && MAP[i][j + 1] < 10))
+					dprintf(3, "%d ", MAP[i][j]);
+				else		
+					dprintf(3, "%d  ", MAP[i][j]);
+			}
 		}
 		dprintf(3, "\n");
 	}
@@ -78,7 +109,7 @@ int		main(void)
 	SYMBL = 0;
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	check_input(fill);
-	//check_map(fill);
+	check_map(fill);
 	write_info(fill);
 	ft_stralldel(MAP, X + 1);
 	free(X_F);
