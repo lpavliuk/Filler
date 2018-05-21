@@ -57,6 +57,26 @@ static void	write_figure(t_f *fill)
 	free(LINE);
 }
 
+static void	check_dot_zero(t_f *fill, int i)
+{
+	int n;
+	int j;
+
+	n = 0;
+	j = 4;
+	while (n < Y)
+	{
+		if (LINE[j] == '.')
+			MAP[i][n] = 0;
+		else if (LINE[j] == 'O')
+			MAP[i][n] = -1;
+		else
+			MAP[i][n] = -2;
+		j++;
+		n++;
+	}
+}
+
 static void	write_map(t_f *fill)
 {
 	int		i;
@@ -74,16 +94,7 @@ static void	write_map(t_f *fill)
 		MAP[i] = (char *)malloc(sizeof(char) * (Y + 1));
 		ft_bzero(MAP[i], Y + 1);
 		get_next_line(0, &LINE);
-		while (++n < Y)
-		{
-			if (LINE[j] == '.')
-				MAP[i][n] = 0;
-				else if (LINE[j] == 'O')
-				MAP[i][n] = -1;
-			else
-				MAP[i][n] = -2;
-			j++;
-		}
+		check_dot_zero(fill, i);
 		free(LINE);
 		i++;
 	}

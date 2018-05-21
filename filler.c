@@ -12,6 +12,11 @@
 
 #include "filler.h"
 
+static void	put_figure(t_f *fill)
+{
+	
+}
+
 static void	work_spy(t_f *fill, int i, int j, int z)
 {
 	z++;
@@ -25,21 +30,21 @@ static void	work_spy(t_f *fill, int i, int j, int z)
 		MAP[i - 1][j] = z;
 }
 
-void	check_map(t_f *fill)
+static void	check_map(t_f *fill)
 {
 	int i;
 	int j;
 	int x;
 	int z;
 
-	i = -1;
-	z = 0;
+	z = -1;
 	if (SYMBL == 'o')
 		x = -2;
 	else
 		x = -1;
-	while (z < (X + Y))
+	while (++z < (X + Y))
 	{
+		i = -1;
 		while (++i < X)
 		{
 			j = -1;
@@ -51,12 +56,16 @@ void	check_map(t_f *fill)
 					work_spy(fill, i, j, z);
 			}
 		}
-		i = -1;
-		z++;
 	}
 }
 
-void	write_info(t_f *fill)
+/**************************************************************************/
+/*
+/*	ВЫВОД СОДЕРЖАНИЯ СТРУКТУРЫ
+/*
+/**************************************************************************/
+
+void		write_info(t_f *fill)
 {
 	int i;
 	int j;
@@ -77,10 +86,10 @@ void	write_info(t_f *fill)
 			}
 			else
 			{
-				if (MAP[i][j + 1] >= 10 || 
+				if (MAP[i][j + 1] >= 10 ||
 					(MAP[i][j] >= 10 && MAP[i][j + 1] < 10))
 					dprintf(3, "%d ", MAP[i][j]);
-				else		
+				else
 					dprintf(3, "%d  ", MAP[i][j]);
 			}
 		}
@@ -92,7 +101,9 @@ void	write_info(t_f *fill)
 		dprintf(3, "X_F: %d\nY_F: %d\n", X_F[i], Y_F[i]);
 }
 
-int		main(void)
+/**************************************************************************/
+
+int			main(void)
 {
 	t_f		*fill;
 	int		i;
@@ -110,6 +121,7 @@ int		main(void)
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	check_input(fill);
 	check_map(fill);
+	put_figure(fill);
 	write_info(fill);
 	ft_stralldel(MAP, X + 1);
 	free(X_F);
