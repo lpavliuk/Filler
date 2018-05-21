@@ -108,12 +108,6 @@ static void	write_map(t_f *fill)
 void		check_input(t_f *fill)
 {
 	get_next_line(0, &LINE);
-	if (ft_strstr(LINE, "p1"))
-		SYMBL = 'o';
-	else
-		SYMBL = 'x';
-	free(LINE);
-	get_next_line(0, &LINE);
 	X = ft_atoi(&(LINE[8]));
 	Y = ft_atoi(&(LINE[8 + ft_count(X, 10)]));
 	free(LINE);

@@ -152,11 +152,20 @@ int			main(void)
 	LINE = NULL;
 	SYMBL = 0;
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	check_input(fill);
-	check_map(fill);
-	move_figure(fill);
-	// put_figure(fill);
-	write_info(fill);
+	get_next_line(0, &LINE);
+	if (ft_strstr(LINE, "p1"))
+		SYMBL = 'o';
+	else
+		SYMBL = 'x';
+	free(LINE);
+	while (1)
+	{
+		check_input(fill);
+		check_map(fill);
+		move_figure(fill);
+		// put_figure(fill);
+		write_info(fill);
+	}
 	ft_stralldel(MAP, X + 1);
 	free(X_F);
 	free(Y_F);
