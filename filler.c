@@ -14,7 +14,31 @@
 
 static void	put_figure(t_f *fill)
 {
-	
+	int 	i;
+	int 	j;
+	int 	x;
+	char	flag;
+
+	i = -1;
+	if (SYMBL == 'o')
+	{
+		x = -2;
+		flag = 0;
+	}
+	else
+	{
+		x = -1;
+		flag = 1;
+	}
+	while (++i < X)
+	{
+		j = -1;
+		while (++j < Y)
+		{
+			if (MAP[i][j] == x)
+				
+		}
+	}
 }
 
 static void	work_spy(t_f *fill, int i, int j, int z)
