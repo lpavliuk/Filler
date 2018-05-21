@@ -12,33 +12,42 @@
 
 #include "filler.h"
 
-static void	put_figure(t_f *fill)
-{
-	int 	i;
-	int 	j;
-	int 	x;
-	char	flag;
+// static void	put_figure(t_f *fill)
+// {
+// 	int 	i;
+// 	int 	j;
+// 	int 	x;
+// 	char	flag;
 
-	i = -1;
-	if (SYMBL == 'o')
-	{
-		x = -2;
-		flag = 0;
-	}
-	else
-	{
-		x = -1;
-		flag = 1;
-	}
-	while (++i < X)
-	{
-		j = -1;
-		while (++j < Y)
-		{
-			if (MAP[i][j] == x)
+// 	i = -1;
+// 	flag = 0;
+// 	if (SYMBL == 'o')
+// 		x = -2;
+// 	else
+// 	{
+// 		x = -1;
+// 		flag = 1;
+// 	}
+// 	while (++i < X)
+// 	{
+// 		j = -1;
+// 		while (++j < Y)
+// 		{
+// 			if (MAP[i][j] == x && !flag)
+// 				check_place(fill);
+// 			else
+// 			{
+// 				()
+// 			}
+
 				
-		}
-	}
+// 		}
+// 	}
+// }
+
+static void	move_figure(t_f *fill)
+{
+	
 }
 
 static void	work_spy(t_f *fill, int i, int j, int z)
@@ -85,8 +94,8 @@ static void	check_map(t_f *fill)
 
 /**************************************************************************/
 /*
-/*	ВЫВОД СОДЕРЖАНИЯ СТРУКТУРЫ
-/*
+**	ВЫВОД СОДЕРЖАНИЯ СТРУКТУРЫ
+*/
 /**************************************************************************/
 
 void		write_info(t_f *fill)
@@ -145,7 +154,8 @@ int			main(void)
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	check_input(fill);
 	check_map(fill);
-	put_figure(fill);
+	move_figure(fill);
+	// put_figure(fill);
 	write_info(fill);
 	ft_stralldel(MAP, X + 1);
 	free(X_F);

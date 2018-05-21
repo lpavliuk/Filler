@@ -23,6 +23,11 @@ static void	write_coordinates(t_f *fill, int i)
 		{
 			if (LINE[n] == '*')
 			{
+				if (!MIN_X && !MIN_Y)
+				{
+					MIN_X = i;
+					MIN_Y = n;
+				}
 				X_F[NUM] = i;
 				Y_F[NUM] = n;
 				NUM++;
@@ -45,8 +50,8 @@ static void	write_figure(t_f *fill)
 	Y_F = malloc(sizeof(int) * (SIZE_F_X * SIZE_F_Y + 1));
 	ft_bzero(X_F, (SIZE_F_X * SIZE_F_Y + 1));
 	ft_bzero(Y_F, (SIZE_F_X * SIZE_F_Y + 1));
-	SIZE_F_X--;
-	SIZE_F_Y--;
+	// SIZE_F_X--;
+	// SIZE_F_Y--;
 	i = 0;
 	while (get_next_line(0, &LINE) > 0)
 	{

@@ -23,6 +23,8 @@
 # define SIZE_F_Y fill->size_figure_y
 # define X_F fill->x_figure
 # define Y_F fill->y_figure
+# define MIN_X fill->min_x
+# define MIN_Y fill->min_y
 # define NUM fill->num
 # define SYMBL fill->symbol
 # define LINE fill->line
@@ -35,6 +37,8 @@ typedef struct	s_f
 	int		size_figure_y;
 	int		*x_figure;
 	int		*y_figure;
+	int		min_x;
+	int		min_y;
 	int		num;
 	char	symbol;
 	char	**map;
