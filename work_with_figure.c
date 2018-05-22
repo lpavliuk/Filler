@@ -14,11 +14,11 @@
 
 static void	check_sum(t_f *fill, int i, int j, int summa)
 {
-	if ((!SUM || (SUM >= summa && summa)) && FLAG == 1)
+	if ((!SUM || (SUM >= summa)) && FLAG == 1)
 	{
 		dprintf(3, "summa: %d\n", summa);
-		BEST_X = i - MIN_X;
-		BEST_Y = j - MIN_Y;
+		BEST_X = i;
+		BEST_Y = j;
 		SUM = summa;
 	}
 }
@@ -31,44 +31,37 @@ static int	check_map(t_f *fill, int i, int j)
 	{
 		FLAG++;
 		if (FLAG > 1)
-		{
-			FLAG = 0;
 			return (1);
-		}
 	}
 	else if (MAP[i][j] == ENEMY)
 		return (1);
 	return (0);
 }
 
-static void	check_place_in_map(t_f *fill, int ii, int jj)
+static void	check_place_in_map(t_f *fill, int ii, int jj, int summa)
 {
 	int	a;
 	int	b;
 	int i;
 	int j;
-	int summa;
 
-	summa = 0;
-	a = MIN_X;
+	a = -1;
 	i = ii;
-	while (a < SIZE_F_X)
+	while (++a < SIZE_F_X)
 	{
-		b = MIN_Y;
 		j = jj;
-		while (b < SIZE_F_Y)
+		b = -1;
+		while (++b < SIZE_F_Y)
 		{
 			if (FIGURE[a][b] == '*')
 			{
 				if (check_map(fill, i, j))
 					return ;
-				else if (MAP[i][j] != SYMBL)
+				if (MAP[i][j] != SYMBL)
 					summa += MAP[i][j];
 			}
-			b++;
 			j++;
 		}
-		a++;
 		i++;
 	}
 	check_sum(fill, ii, jj, summa);
@@ -101,6 +94,7 @@ void		work_with_figure(t_f *fill)
 {
 	int i;
 	int j;
+	int summa;
 
 	i = -1;
 	check_min_max_figure(fill);
@@ -111,18 +105,14 @@ void		work_with_figure(t_f *fill)
 		j = 0;
 		while (j < Y)
 		{
-			check_place_in_map(fill, i, j);
+			summa = 0;
+			check_place_in_map(fill, i, j, summa);
 			FLAG = 0;
 			j++;
 		}
 	}
-	if (SUM)
-	{
-		ft_printf("%d %d\n", (BEST_X), (BEST_Y));
-		dprintf(3, "SUM: %d\n", SUM);
-		dprintf(3, "%d %d\n", (BEST_X), (BEST_Y));
-		dprintf(3, "%d %d\n", (MIN_X), (MIN_Y));
-	}
-	else
-		ft_printf("0 0\n");
+	ft_printf("%d %d\n", (BEST_X), (BEST_Y));
+	dprintf(3, "SUM: %d\n", SUM);
+	dprintf(3, "%d %d\n", (BEST_X), (BEST_Y));
+	dprintf(3, "%d %d\n", (MIN_X), (MIN_Y));
 }

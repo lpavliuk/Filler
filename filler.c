@@ -93,22 +93,7 @@ void		write_info(t_f *fill)
 	{
 		j = -1;
 		while (++j < Y)
-		{
-			if (MAP[i][j + 1] < 0)
-			{
-				dprintf(3, "%d", MAP[i][j]);
-				if (j >= 0 && MAP[i][j + 1] < 10)
-					dprintf(3, " ");
-			}
-			else
-			{
-				if (MAP[i][j + 1] >= 10 ||
-					(MAP[i][j] >= 10 && MAP[i][j + 1] < 10))
-					dprintf(3, "%d ", MAP[i][j]);
-				else
-					dprintf(3, "%d  ", MAP[i][j]);
-			}
-		}
+			dprintf(3, "%3d", MAP[i][j]);
 		dprintf(3, "\n");
 	}
 	dprintf(3, "SIZE_F_X: %d\nSIZE_F_Y: %d\n", SIZE_F_X, SIZE_F_Y);
