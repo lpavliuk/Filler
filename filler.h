@@ -21,11 +21,11 @@
 # define MAP fill->map
 # define SIZE_F_X fill->size_figure_x
 # define SIZE_F_Y fill->size_figure_y
-# define X_F fill->x_figure
-# define Y_F fill->y_figure
+# define FIGURE fill->figure
 # define MIN_X fill->min_x
 # define MIN_Y fill->min_y
-# define NUM fill->num
+# define MAX_X fill->max_x
+# define MAX_Y fill->max_y
 # define SYMBL fill->symbol
 # define LINE fill->line
 
@@ -35,16 +35,17 @@ typedef struct	s_f
 	int		size_y_map;
 	int		size_figure_x;
 	int		size_figure_y;
-	int		*x_figure;
-	int		*y_figure;
+	char	**figure;
 	int		min_x;
 	int		min_y;
-	int		num;
+	int 	max_x;
+	int 	max_y;
 	char	symbol;
 	char	**map;
 	char	*line;
 }				t_f;
 
 void 			check_input(t_f *fill);
+void			write_map(t_f *fill);
 
 #endif

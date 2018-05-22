@@ -45,10 +45,10 @@
 // 	}
 // }
 
-static void	move_figure(t_f *fill)
-{
+// static void	move_figure(t_f *fill)
+// {
 	
-}
+// }
 
 static void	work_spy(t_f *fill, int i, int j, int z)
 {
@@ -92,6 +92,22 @@ static void	check_map(t_f *fill)
 	}
 }
 
+static void	clean_fill(t_f *fill, char freeshka)
+{
+	X = 0;
+	Y = 0;
+	FIGURE = NULL;
+	MAP = NULL;
+	LINE = NULL;
+	SYMBL = 0;
+	if (freeshka)
+	{
+		ft_stralldel(MAP, X + 1);
+		free(MAP);
+		free(fill);	
+	}
+}
+
 /**************************************************************************/
 /*
 **	ВЫВОД СОДЕРЖАНИЯ СТРУКТУРЫ
@@ -130,8 +146,11 @@ void		write_info(t_f *fill)
 	}
 	dprintf(3, "SIZE_F_X: %d\nSIZE_F_Y: %d\n", SIZE_F_X, SIZE_F_Y);
 	i = -1;
-	while (++i < NUM)
-		dprintf(3, "X_F: %d\nY_F: %d\n", X_F[i], Y_F[i]);
+	while (++i < SIZE_F_X)
+	{
+		dprintf(3, "%s", FIGURE[i]);
+		dprintf(3, "\n");
+	}
 }
 
 /**************************************************************************/
@@ -143,32 +162,25 @@ int			main(void)
 
 	i = 1;
 	fill = malloc(sizeof(t_f));
-	X = 0;
-	Y = 0;
-	X_F = NULL;
-	Y_F = NULL;
-	NUM = 0;
-	MAP = NULL;
-	LINE = NULL;
-	SYMBL = 0;
+	clean_fill(fill, 0);
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	get_next_line(0, &LINE);
-	if (ft_strstr(LINE, "p1"))
-		SYMBL = 'o';
-	else
-		SYMBL = 'x';
-	free(LINE);
-	while (1)
+	check_input(fill);
+	while (get_next_line(0, &LINE) > 0)
 	{
-		check_input(fill);
+		if (!ft_strstr(LINE, "0123456789"))
+		{
+			free(LINE);
+			get_next_line(0, &LINE);
+		}
+		free(LINE);
+		write_map(fill);
 		check_map(fill);
-		move_figure(fill);
+		// move_figure(fill);
 		// put_figure(fill);
 		write_info(fill);
+		ft_stralldel(FIGURE, SIZE_F_X + 1);
+		free(FIGURE);
 	}
-	ft_stralldel(MAP, X + 1);
-	free(X_F);
-	free(Y_F);
-	free(fill);
+	clean_fill(fill, 1);
 	return (0);
 }
