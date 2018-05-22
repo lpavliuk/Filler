@@ -46,6 +46,6 @@ typedef struct	s_f
 }				t_f;
 
 void 			check_input(t_f *fill);
-void			write_map(t_f *fill);
+void		    write_map(t_f *fill);
 
 #endif

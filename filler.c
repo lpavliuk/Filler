@@ -12,55 +12,29 @@
 
 #include "filler.h"
 
-// static void	put_figure(t_f *fill)
-// {
-// 	int 	i;
-// 	int 	j;
-// 	int 	x;
-// 	char	flag;
+void 		work_with_figure(t_f *fill)
+{
+	int 	i;
+	int 	j;
 
-// 	i = -1;
-// 	flag = 0;
-// 	if (SYMBL == 'o')
-// 		x = -2;
-// 	else
-// 	{
-// 		x = -1;
-// 		flag = 1;
-// 	}
-// 	while (++i < X)
-// 	{
-// 		j = -1;
-// 		while (++j < Y)
-// 		{
-// 			if (MAP[i][j] == x && !flag)
-// 				check_place(fill);
-// 			else
-// 			{
-// 				()
-// 			}
+	i = -1;
+	while (i < X)
+	{
 
-				
-// 		}
-// 	}
-// }
-
-// static void	move_figure(t_f *fill)
-// {
-	
-// }
+	}
+}
 
 static void	work_spy(t_f *fill, int i, int j, int z)
 {
 	z++;
 	if (j < Y - 1 && MAP[i][j + 1] == 0)
-		MAP[i][j + 1] = z;
+		MAP[i][j + 1] = (char)z;
 	if (j > 0 && MAP[i][j - 1] == 0)
-		MAP[i][j - 1] = z;
+		MAP[i][j - 1] = (char)z;
 	if (i < X - 1 && MAP[i + 1][j] == 0)
-		MAP[i + 1][j] = z;
+		MAP[i + 1][j] = (char)z;
 	if (i > 0 && MAP[i - 1][j] == 0)
-		MAP[i - 1][j] = z;
+		MAP[i - 1][j] = (char)z;
 }
 
 static void	check_map(t_f *fill)
@@ -102,7 +76,7 @@ static void	clean_fill(t_f *fill, char freeshka)
 	SYMBL = 0;
 	if (freeshka)
 	{
-		ft_stralldel(MAP, X + 1);
+		ft_stralldel(MAP, (size_t)X + 1);
 		free(MAP);
 		free(fill);	
 	}
@@ -175,10 +149,9 @@ int			main(void)
 		free(LINE);
 		write_map(fill);
 		check_map(fill);
-		// move_figure(fill);
-		// put_figure(fill);
+		work_with_figure(fill);
 		write_info(fill);
-		ft_stralldel(FIGURE, SIZE_F_X + 1);
+		ft_stralldel(FIGURE, (size_t)SIZE_F_X + 1);
 		free(FIGURE);
 	}
 	clean_fill(fill, 1);

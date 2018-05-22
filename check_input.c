@@ -32,7 +32,7 @@ static void	write_figure(t_f *fill)
 		if (LINE[0] == '\0')
 			break ;
 		FIGURE[i] = (char *)malloc(sizeof(char) * (SIZE_F_Y + 1));
-		ft_bzero(FIGURE[i], SIZE_F_Y + 1);
+		ft_bzero(FIGURE[i], (size_t)SIZE_F_Y + 1);
 		while (++n < SIZE_F_Y)
 			FIGURE[i][n] = LINE[n];
 		free(LINE);
@@ -61,7 +61,7 @@ static void	check_dot_zero(t_f *fill, int i)
 	}
 }
 
-void		write_map(t_f *fill)
+void write_map(t_f *fill)
 {
 	int		i;
 	int		j;
@@ -99,7 +99,7 @@ void		check_input(t_f *fill)
 	while (++i < X)
 	{
 		MAP[i] = (char *)malloc(sizeof(char) * (Y + 1));
-		ft_bzero(MAP[i], Y + 1);
+		ft_bzero(MAP[i], (size_t)Y + 1);
 	}
 	MAP[i] = 0;
 }
