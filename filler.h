@@ -24,8 +24,11 @@
 # define FIGURE fill->figure
 # define MIN_X fill->min_x
 # define MIN_Y fill->min_y
-# define MAX_X fill->max_x
-# define MAX_Y fill->max_y
+# define SUM fill->sum
+# define BEST_X fill->best_x
+# define BEST_Y fill->best_y
+# define FLAG fill->flag
+# define ENEMY fill->enemy
 # define SYMBL fill->symbol
 # define LINE fill->line
 
@@ -38,8 +41,11 @@ typedef struct	s_f
 	char	**figure;
 	int		min_x;
 	int		min_y;
-	int 	max_x;
-	int 	max_y;
+	int 	best_x;
+	int 	best_y;
+	int 	sum;
+	char 	enemy;
+	char 	flag;
 	char	symbol;
 	char	**map;
 	char	*line;

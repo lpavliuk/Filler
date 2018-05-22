@@ -33,16 +33,10 @@ static void	check_map(t_f *fill)
 	int z;
 
 	z = -1;
-	if (SYMBL == 'o')
-	{
-		x = -2;
-		SYMBL = -1;
-	}
+	if (SYMBL == -1)
+		ENEMY = -2;
 	else
-	{
-		x = -1;
-		SYMBL = -2;
-	}
+		ENEMY = -1;
 	while (++z < (X + Y))
 	{
 		i = -1;
@@ -51,7 +45,7 @@ static void	check_map(t_f *fill)
 			j = -1;
 			while (++j < Y)
 			{
-				if (MAP[i][j] == x)
+				if (MAP[i][j] == ENEMY)
 					work_spy(fill, i, j, 0);
 				else if (z > 0 && MAP[i][j] == z)
 					work_spy(fill, i, j, z);
@@ -64,6 +58,15 @@ static void	clean_fill(t_f *fill, char freeshka)
 {
 	X = 0;
 	Y = 0;
+	SIZE_F_X = 0;
+	SIZE_F_Y = 0;
+	MIN_X = 0;
+	MIN_Y = 0;
+	BEST_X = 0;
+	BEST_Y = 0;
+	SUM = 0;
+	FLAG = 0;
+	ENEMY = 0;
 	FIGURE = NULL;
 	MAP = NULL;
 	LINE = NULL;
@@ -88,7 +91,7 @@ void		write_info(t_f *fill)
 	int j;
 
 	i = -1;
-	dprintf(3, "SYMBL: %c\n", SYMBL);
+	dprintf(3, "SYMBL: %d\n", SYMBL);
 	dprintf(3, "X: %d\nY: %d\n", X, Y);
 	while (++i < X)
 	{

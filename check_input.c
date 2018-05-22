@@ -87,9 +87,9 @@ void		check_input(t_f *fill)
 	i = -1;
 	get_next_line(0, &LINE);
 	if (ft_strstr(LINE, "p1"))
-		SYMBL = 'o';
+		SYMBL = -1;
 	else
-		SYMBL = 'x';
+		SYMBL = -2;
 	free(LINE);
 	get_next_line(0, &LINE);
 	X = ft_atoi(&(LINE[8]));
