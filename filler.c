@@ -12,15 +12,37 @@
 
 #include "filler.h"
 
+void		check_figure_to_map(t_f *fill, int i, int j)
+{
+	int a;
+	int b;
+
+	a = -1;
+	while (++a < SIZE_F_X)
+	{
+		b = -1;
+		while (++b < SIZE_F_Y)
+		{
+//			if (FIGURE[a][b] == '*')
+//				in_map();
+		}
+	}
+}
+
 void 		work_with_figure(t_f *fill)
 {
 	int 	i;
 	int 	j;
 
 	i = -1;
-	while (i < X)
+	while (++i < X)
 	{
-
+		j = -1;
+		while (++j < Y)
+		{
+			if(MAP[i][j] == SYMBL)
+				check_figure_to_map(fill, i, j);
+		}
 	}
 }
 
@@ -46,9 +68,15 @@ static void	check_map(t_f *fill)
 
 	z = -1;
 	if (SYMBL == 'o')
+	{
 		x = -2;
+		SYMBL = -1;
+	}
 	else
+	{
 		x = -1;
+		SYMBL = -2;
+	}
 	while (++z < (X + Y))
 	{
 		i = -1;
@@ -132,9 +160,7 @@ void		write_info(t_f *fill)
 int			main(void)
 {
 	t_f		*fill;
-	int		i;
 
-	i = 1;
 	fill = malloc(sizeof(t_f));
 	clean_fill(fill, 0);
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
