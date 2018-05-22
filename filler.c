@@ -56,8 +56,6 @@ static void	check_map(t_f *fill)
 
 static void	clean_fill(t_f *fill, char freeshka)
 {
-	X = 0;
-	Y = 0;
 	SIZE_F_X = 0;
 	SIZE_F_Y = 0;
 	MIN_X = 0;
@@ -66,11 +64,8 @@ static void	clean_fill(t_f *fill, char freeshka)
 	BEST_Y = 0;
 	SUM = 0;
 	FLAG = 0;
-	ENEMY = 0;
 	FIGURE = NULL;
-	MAP = NULL;
 	LINE = NULL;
-	SYMBL = 0;
 	if (freeshka)
 	{
 		ft_stralldel(MAP, (size_t)X + 1);
@@ -92,6 +87,7 @@ void		write_info(t_f *fill)
 
 	i = -1;
 	dprintf(3, "SYMBL: %d\n", SYMBL);
+	dprintf(3, "ENEMY: %d\n", ENEMY);
 	dprintf(3, "X: %d\nY: %d\n", X, Y);
 	while (++i < X)
 	{
@@ -131,6 +127,11 @@ int			main(void)
 	t_f		*fill;
 
 	fill = malloc(sizeof(t_f));
+	X = 0;
+	Y = 0;
+	MAP = NULL;
+	SYMBL = 0;
+	ENEMY = 0;
 	clean_fill(fill, 0);
 	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	check_input(fill);
@@ -148,6 +149,7 @@ int			main(void)
 		write_info(fill);
 		ft_stralldel(FIGURE, (size_t)SIZE_F_X + 1);
 		free(FIGURE);
+		clean_fill(fill, 0);
 	}
 	clean_fill(fill, 1);
 	return (0);

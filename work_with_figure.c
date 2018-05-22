@@ -14,10 +14,11 @@
 
 static void	check_sum(t_f *fill, int i, int j, int summa)
 {
-	if (!SUM || SUM <= summa)
+	if ((!SUM || (SUM >= summa && summa)) && FLAG == 1)
 	{
-		BEST_X = i;
-		BEST_Y = j;
+		dprintf(3, "summa: %d\n", summa);
+		BEST_X = i - MIN_X;
+		BEST_Y = j - MIN_Y;
 		SUM = summa;
 	}
 }
@@ -35,21 +36,22 @@ static int	check_map(t_f *fill, int i, int j)
 			return (1);
 		}
 	}
-	if (MAP[i][j] == ENEMY)
+	else if (MAP[i][j] == ENEMY)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
-static void	check_place_in_map(t_f *fill, int i, int jj)
+static void	check_place_in_map(t_f *fill, int ii, int jj)
 {
 	int	a;
 	int	b;
+	int i;
 	int j;
 	int summa;
 
 	summa = 0;
 	a = MIN_X;
+	i = ii;
 	while (a < SIZE_F_X)
 	{
 		b = MIN_Y;
@@ -60,8 +62,8 @@ static void	check_place_in_map(t_f *fill, int i, int jj)
 			{
 				if (check_map(fill, i, j))
 					return ;
-				else
-					summa += FIGURE[a][b];
+				else if (MAP[i][j] != SYMBL)
+					summa += MAP[i][j];
 			}
 			b++;
 			j++;
@@ -69,7 +71,7 @@ static void	check_place_in_map(t_f *fill, int i, int jj)
 		a++;
 		i++;
 	}
-	check_sum(fill, i - a, jj, summa);
+	check_sum(fill, ii, jj, summa);
 }
 
 static void	check_min_max_figure(t_f *fill)
@@ -77,11 +79,11 @@ static void	check_min_max_figure(t_f *fill)
 	int a;
 	int b;
 
-	a = -1;
-	while (++a < SIZE_F_X)
+	a = 0;
+	while (a < SIZE_F_X)
 	{
-		b = -1;
-		while (++b < SIZE_F_Y)
+		b = 0;
+		while (b < SIZE_F_Y)
 		{
 			if (FIGURE[a][b] == '*')
 			{
@@ -89,7 +91,9 @@ static void	check_min_max_figure(t_f *fill)
 				MIN_Y = b;
 				return ;
 			}
+			b++;
 		}
+		a++;
 	}
 }
 
@@ -100,19 +104,24 @@ void		work_with_figure(t_f *fill)
 
 	i = -1;
 	check_min_max_figure(fill);
+	dprintf(3, "MIN_Y: %d\n", MIN_Y);
+	dprintf(3, "MIN_X: %d\n", MIN_X);
 	while (++i < X)
 	{
-		j = -1;
-		while (++j < Y)
+		j = 0;
+		while (j < Y)
 		{
-			if (MAP[i][j] == SYMBL)
-				check_place_in_map(fill, i, j);
+			check_place_in_map(fill, i, j);
+			FLAG = 0;
+			j++;
 		}
 	}
 	if (SUM)
 	{
-		ft_printf("%d %d\n", (BEST_X - MIN_X), (BEST_Y - MIN_Y));
-		dprintf(3, "%d %d\n", (BEST_X - MIN_X), (BEST_Y - MIN_Y));
+		ft_printf("%d %d\n", (BEST_X), (BEST_Y));
+		dprintf(3, "SUM: %d\n", SUM);
+		dprintf(3, "%d %d\n", (BEST_X), (BEST_Y));
+		dprintf(3, "%d %d\n", (MIN_X), (MIN_Y));
 	}
 	else
 		ft_printf("0 0\n");
