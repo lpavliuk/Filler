@@ -61,7 +61,7 @@ static void	check_dot_zero(t_f *fill, int i)
 	}
 }
 
-void 	    write_map(t_f *fill)
+void		write_map(t_f *fill)
 {
 	int		i;
 	int		j;

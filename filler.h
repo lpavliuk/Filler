@@ -47,5 +47,6 @@ typedef struct	s_f
 
 void 			check_input(t_f *fill);
 void		    write_map(t_f *fill);
+void            work_with_figure(t_f *fill);
 
 #endif
