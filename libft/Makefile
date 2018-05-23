@@ -95,15 +95,15 @@ NAME=libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $< -I ./
+	@$(CC) $(CFLAGS) -o $@ -c $< -I ./
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

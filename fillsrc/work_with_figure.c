@@ -16,7 +16,6 @@ static void	check_sum(t_f *fill, int i, int j, int summa)
 {
 	if ((!SUM || (SUM >= summa)) && FLAG == 1)
 	{
-		dprintf(3, "summa: %d\n", summa);
 		BEST_X = i - MIN_X;
 		BEST_Y = j - MIN_Y;
 		SUM = summa;
@@ -104,8 +103,6 @@ void		work_with_figure(t_f *fill)
 
 	i = -1;
 	check_min_max_figure(fill);
-	dprintf(3, "MIN_X: %d\n", MIN_X);
-	dprintf(3, "MIN_Y: %d\n", MIN_Y);
 	while (++i < X)
 	{
 		j = 0;
@@ -118,6 +115,4 @@ void		work_with_figure(t_f *fill)
 		}
 	}
 	ft_printf("%d %d\n", (BEST_X), (BEST_Y));
-	dprintf(3, "SUM: %d\n", SUM);
-	dprintf(3, "%d %d\n", (BEST_X), (BEST_Y));
 }

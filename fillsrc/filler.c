@@ -53,7 +53,7 @@ static void	check_map(t_f *fill)
 	}
 }
 
-static void	clean_fill(t_f *fill, char freeshka)
+static void	clean_fill(t_f *fill, char freeshka, char first)
 {
 	int n;
 
@@ -73,55 +73,23 @@ static void	clean_fill(t_f *fill, char freeshka)
 		while (++n < X)
 			free(MAP[n]);
 		free(MAP);
-		free(fill);	
+	}
+	else if (first)
+	{
+		X = 0;
+		Y = 0;
+		ENEMY = 0;
 	}
 }
-
-/**************************************************************************/
-/*
-**	ВЫВОД СОДЕРЖАНИЯ СТРУКТУРЫ
-*/
-/**************************************************************************/
-
-void		write_info(t_f *fill)
-{
-	int i;
-	int j;
-
-	i = -1;
-	dprintf(3, "SYMBL: %d\n", SYMBL);
-	dprintf(3, "ENEMY: %d\n", ENEMY);
-	dprintf(3, "X: %d\nY: %d\n", X, Y);
-	while (++i < X)
-	{
-		j = -1;
-		while (++j < Y)
-			dprintf(3, "%3d", MAP[i][j]);
-		dprintf(3, "\n");
-	}
-	dprintf(3, "SIZE_F_X: %d\nSIZE_F_Y: %d\n", SIZE_F_X, SIZE_F_Y);
-	i = -1;
-	while (++i < SIZE_F_X)
-	{
-		dprintf(3, "%s", FIGURE[i]);
-		dprintf(3, "\n");
-	}
-}
-
-/**************************************************************************/
 
 int			main(void)
 {
 	t_f		*fill;
 
 	fill = malloc(sizeof(t_f));
-	X = 0;
-	Y = 0;
 	MAP = NULL;
 	SYMBL = 0;
-	ENEMY = 0;
-	clean_fill(fill, 0);
-	open("map", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	clean_fill(fill, 0, 1);
 	check_input(fill);
 	while (get_next_line(0, &LINE) > 0)
 	{
@@ -134,11 +102,11 @@ int			main(void)
 		write_map(fill);
 		check_map(fill);
 		work_with_figure(fill);
-		write_info(fill);
 		ft_stralldel(FIGURE, (size_t)SIZE_F_X + 1);
 		free(FIGURE);
-		clean_fill(fill, 0);
+		clean_fill(fill, 0, 0);
 	}
-	clean_fill(fill, 1);
+	clean_fill(fill, 1, 0);
+	free(fill);
 	return (0);
 }

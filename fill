@@ -1,1 +1,0 @@
-gcc -Wall -Wextra -Werror filler.c check_input.c work_with_figure.c libft/libft.a -o opavliuk.filler

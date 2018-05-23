@@ -13,8 +13,7 @@
 #ifndef FILLER_H
 # define FILLER_H
 
-# include <fcntl.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define X fill->size_x_map
 # define Y fill->size_y_map
