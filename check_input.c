@@ -17,8 +17,6 @@ static void	write_figure(t_f *fill)
 	int i;
 	int n;
 
-	i = 0;
-	n = 0;
 	get_next_line(0, &LINE);
 	SIZE_F_X = ft_atoi(&(LINE[6]));
 	SIZE_F_Y = ft_atoi(&(LINE[6 + ft_count(SIZE_F_X, 10)]));
@@ -64,14 +62,10 @@ static void	check_dot_zero(t_f *fill, int i)
 void		write_map(t_f *fill)
 {
 	int		i;
-	int		j;
-	int		n;
 
 	i = 0;
 	while (i < X)
 	{
-		n = -1;
-		j = 4;
 		get_next_line(0, &LINE);
 		check_dot_zero(fill, i);
 		free(LINE);

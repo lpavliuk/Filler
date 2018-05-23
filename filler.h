@@ -41,18 +41,18 @@ typedef struct	s_f
 	char	**figure;
 	int		min_x;
 	int		min_y;
-	int 	best_x;
-	int 	best_y;
-	int 	sum;
-	char 	enemy;
-	char 	flag;
+	int		best_x;
+	int		best_y;
+	int		sum;
+	char	enemy;
+	char	flag;
 	char	symbol;
 	int		**map;
 	char	*line;
 }				t_f;
 
-void 			check_input(t_f *fill);
-void		    write_map(t_f *fill);
-void            work_with_figure(t_f *fill);
+void			check_input(t_f *fill);
+void			write_map(t_f *fill);
+void			work_with_figure(t_f *fill);
 
 #endif

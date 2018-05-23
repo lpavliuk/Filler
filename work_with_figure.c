@@ -82,12 +82,10 @@ static void	check_min_max_figure(t_f *fill)
 		{
 			if (FIGURE[a][b] == '*')
 			{
-				dprintf(3, "a: %d\n b: %d\n", a, b);
-				if (!flag)
+				if (!flag++)
 				{
 					MIN_X = a;
 					MIN_Y = b;
-					flag++;
 				}
 				else if (b < MIN_Y)
 					MIN_Y = b;
