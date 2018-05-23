@@ -16,20 +16,19 @@ static void	work_spy(t_f *fill, int i, int j, int z)
 {
 	z++;
 	if (j < Y - 1 && MAP[i][j + 1] == 0)
-		MAP[i][j + 1] = (char)z;
+		MAP[i][j + 1] = z;
 	if (j > 0 && MAP[i][j - 1] == 0)
-		MAP[i][j - 1] = (char)z;
+		MAP[i][j - 1] = z;
 	if (i < X - 1 && MAP[i + 1][j] == 0)
-		MAP[i + 1][j] = (char)z;
+		MAP[i + 1][j] = z;
 	if (i > 0 && MAP[i - 1][j] == 0)
-		MAP[i - 1][j] = (char)z;
+		MAP[i - 1][j] = z;
 }
 
 static void	check_map(t_f *fill)
 {
 	int i;
 	int j;
-	int x;
 	int z;
 
 	z = -1;
@@ -56,6 +55,9 @@ static void	check_map(t_f *fill)
 
 static void	clean_fill(t_f *fill, char freeshka)
 {
+	int n;
+
+	n = -1;
 	SIZE_F_X = 0;
 	SIZE_F_Y = 0;
 	MIN_X = 0;
@@ -68,7 +70,8 @@ static void	clean_fill(t_f *fill, char freeshka)
 	LINE = NULL;
 	if (freeshka)
 	{
-		ft_stralldel(MAP, (size_t)X + 1);
+		while (++n < X)
+			free(MAP[n]);
 		free(MAP);
 		free(fill);	
 	}

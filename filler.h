@@ -47,7 +47,7 @@ typedef struct	s_f
 	char 	enemy;
 	char 	flag;
 	char	symbol;
-	char	**map;
+	int		**map;
 	char	*line;
 }				t_f;
 

@@ -21,7 +21,7 @@ static void	write_figure(t_f *fill)
 	n = 0;
 	get_next_line(0, &LINE);
 	SIZE_F_X = ft_atoi(&(LINE[6]));
-	SIZE_F_Y = ft_atoi(&(LINE[6 + ft_count(i, 10)]));
+	SIZE_F_Y = ft_atoi(&(LINE[6 + ft_count(SIZE_F_X, 10)]));
 	free(LINE);
 	FIGURE = (char **)malloc(sizeof(char *) * (SIZE_F_X + 1));
 	i = 0;
@@ -95,10 +95,10 @@ void		check_input(t_f *fill)
 	X = ft_atoi(&(LINE[8]));
 	Y = ft_atoi(&(LINE[8 + ft_count(X, 10)]));
 	free(LINE);
-	MAP = (char **)malloc(sizeof(char *) * (X + 1));
+	MAP = (int **)malloc(sizeof(int *) * (X + 1));
 	while (++i < X)
 	{
-		MAP[i] = (char *)malloc(sizeof(char) * (Y + 1));
+		MAP[i] = (int *)malloc(sizeof(int) * (Y + 1));
 		ft_bzero(MAP[i], (size_t)Y + 1);
 	}
 	MAP[i] = 0;
