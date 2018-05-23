@@ -67,12 +67,12 @@ static void	clean_fill(t_f *fill, char freeshka, char first)
 	SUM = 0;
 	FLAG = 0;
 	FIGURE = NULL;
-	LINE = NULL;
 	if (freeshka)
 	{
 		while (++n < X)
 			free(MAP[n]);
 		free(MAP);
+		free(fill);
 	}
 	else if (first)
 	{
@@ -106,7 +106,7 @@ int			main(void)
 		free(FIGURE);
 		clean_fill(fill, 0, 0);
 	}
+	free(LINE);
 	clean_fill(fill, 1, 0);
-	free(fill);
 	return (0);
 }
