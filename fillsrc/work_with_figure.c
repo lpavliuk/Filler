@@ -98,21 +98,27 @@ static void	check_min_max_figure(t_f *fill)
 void		work_with_figure(t_f *fill)
 {
 	int i;
+	int a;
 	int j;
-	int summa;
+	int b;
 
-	i = -1;
+	i = 0;
+	a = X;
 	check_min_max_figure(fill);
-	while (++i < X)
+	while (i < a)
 	{
 		j = 0;
-		while (j < Y)
+		b = Y;
+		while (j < b)
 		{
-			summa = 0;
-			check_place_in_map(fill, i, j, summa);
+			if (SYMBL == -1)
+				check_place_in_map(fill, i, j, 0);
+			else
+				check_place_in_map(fill, a - 1, b - 1, 0);
 			FLAG = 0;
-			j++;
+			(SYMBL == -1) ? j++ : b--;
 		}
+		(SYMBL == -1) ? i++ : a--;
 	}
 	ft_printf("%d %d\n", (BEST_X), (BEST_Y));
 }
