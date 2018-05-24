@@ -12,46 +12,21 @@
 
 #include "visual.h"
 
-static int key_hook(int key, t_mlx *mlx)
+static int key_hook(int keycode, t_mlx *mlx)
 {
-	if (key == 53)
+	if (keycode == 53)
 	{
 		mlx_destroy_window(MLX, WIN);
 		exit(0);
 	}
+//	else if (keycode == 49)
+	//		start_game(mlx);
 	return (0);
 }
 
 static int exit_x(int keycode)
 {
 	exit (0);
-}
-
-static void	check_input(t_mlx *mlx)
-{
-	int i;
-	int	n;
-
-	i = 0;
-	while (i < 9)
-	{
-		n = 7;
-		get_next_line(0, &LINE);
-		if (ft_strstr(LINE, "launched"))
-		{
-			if (ft_strchr(&LINE[n], '/'))
-			{
-				while (LINE[n] != '/')
-					n++;
-			}
-			if (i > 6)
-				PLYR_X = ft_strdup(&LINE[n + 1]);
-			else
-				PLYR_O = ft_strdup(&LINE[n + 1]);
-		}
-		free(LINE);
-		i++;
-	}
 }
 
 static void	drawing_players(t_mlx *mlx)
@@ -62,28 +37,35 @@ static void	drawing_players(t_mlx *mlx)
 	mlx_string_put(MLX, WIN, 250, 150, 0xA52A2A, PLYR_X);
 }
 
+
+
 int main(void)
 {
 	t_mlx	*mlx;
-	int 	i;
-	int 	j;
 
-	i = 0;
-	j = 0;
 	mlx = malloc(sizeof(t_mlx));
 	LINE = NULL;
+	I = 0;
+	J = 0;
 	check_input(mlx);
 	get_next_line(0, &LINE);
-	i = atoi(&LINE[8]);
-	j = atoi(&LINE[8 + ft_count(i, 10)]);
+	I = atoi(&LINE[8]);
+	J = atoi(&LINE[8 + ft_count(I, 10)]);
 	free(LINE);
+	write_map(I, J, mlx);
 	MLX = mlx_init();
 	WIN = mlx_new_window(MLX, 1000, 1000, "FILLER");
 	drawing_players(mlx);
-	mlx_string_put(MLX, WIN, 500, 900, 0xFFFFFF, "Press SPACE to start the game!");
-	drawing_net(i, j, mlx);
+	mlx_string_put(MLX, WIN, 350, 800, 0xFFFFFF, "Press SPACE to start the game!");
+	drawing_net(I, J, mlx);
+	drawing_game(mlx);
 	mlx_hook(WIN, 2, 0, key_hook, mlx);
 	mlx_hook(WIN, 17, 1L << 17, exit_x, 0);
 	mlx_loop(MLX);
+	ft_stralldel(MAP, I + 1);
+	free(MAP);
+	free(PLYR_O);
+	free(PLYR_X);
+	free(mlx);
 	return (0);
 }
