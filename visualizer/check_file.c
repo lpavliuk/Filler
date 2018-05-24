@@ -39,22 +39,22 @@ void	check_input(t_mlx *mlx)
 	}
 }
 
-void	write_map(int i, int j, t_mlx *mlx)
+void	write_map(t_mlx *mlx)
 {
 	int x;
 	int y;
 
 	get_next_line(0, &LINE);
 	free(LINE);
-	MAP = (char **)malloc(sizeof(char *) * (i + 1));
+	MAP = (char **)malloc(sizeof(char *) * (I + 1));
 	x = -1;
-	while (++x < i)
+	while (++x < I)
 	{
 		y = -1;
-		MAP[x] = (char *)malloc(sizeof(char) * (j + 1));
-		ft_bzero(MAP[x], j + 1);
+		MAP[x] = (char *)malloc(sizeof(char) * (J + 1));
+		ft_bzero(MAP[x], J + 1);
 		get_next_line(0, &LINE);
-		while (++y < j)
+		while (++y < J)
 			MAP[x][y] = LINE[4 + y];
 		free(LINE);
 	}

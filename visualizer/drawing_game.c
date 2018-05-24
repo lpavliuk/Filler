@@ -12,6 +12,14 @@
 
 #include "visual.h"
 
+void		drawing_players(t_mlx *mlx)
+{
+	mlx_string_put(MLX, WIN, 150, 100, 0xFFD700, "Player O: ");
+	mlx_string_put(MLX, WIN, 250, 100, 0xFFD700, PLYR_O);
+	mlx_string_put(MLX, WIN, 150, 150, 0xA52A2A, "Player X: ");
+	mlx_string_put(MLX, WIN, 250, 150, 0xA52A2A, PLYR_X);
+}
+
 static void	draw_x(int a, int b, t_mlx *mlx)
 {
 	int x;
@@ -49,12 +57,12 @@ void		drawing_game(t_mlx *mlx)
 	int x;
 	int y;
 
-	a = 1;
+	a = 0;
 	x = -1;
 	while (++x < I)
 	{
 		y = -1;
-		b = 1;
+		b = 0;
 		while (++y < J)
 		{
 			if (MAP[x][y] == 'x' || MAP[x][y] == 'X')

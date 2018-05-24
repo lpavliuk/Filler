@@ -1,1 +1,1 @@
-gcc visualizer.c drawing_net.c drawing_game.c check_file.c ../libft/libft.a -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit -I /usr/local/include 
+gcc visualizer.c drawing_net.c drawing_game.c check_file.c ../libft/libft.a -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit -o visualizator -I /usr/local/include 

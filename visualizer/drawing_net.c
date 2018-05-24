@@ -12,7 +12,7 @@
 
 #include "visual.h"
 
-static void	draw_x(int i, int j, t_mlx *mlx)
+static void	draw_x(t_mlx *mlx)
 {
 	int x;
 	int y;
@@ -20,22 +20,22 @@ static void	draw_x(int i, int j, t_mlx *mlx)
 
 	x = 250;
 	a = 1;
-	while (x < (250 + ((500 / j) * j)))
+	while (x < (250 + ((500 / J) * J)))
 	{
 		y = 250;
-		if (x == (250 + ((500 / j) * a)))
+		if (x == (250 + ((500 / J) * a)))
 		{
-			while (y < (250 + ((500 / i) * i)))
+			while (y < (250 + ((500 / I) * I)))
 				mlx_pixel_put(MLX, WIN, x, y++, 0xFFFFFF);
 			a++;
 		}
 		mlx_pixel_put(MLX, WIN, x++, y, 0xFFFFFF);
 	}
-	while (y < (250 + ((500 / i) * i)))
+	while (y < (250 + ((500 / I) * I)))
 		mlx_pixel_put(MLX, WIN, x, y++, 0xFFFFFF);
 }
 
-void		drawing_net(int i, int j, t_mlx *mlx)
+void		drawing_net(t_mlx *mlx)
 {
 	int		x;
 	int		y;
@@ -44,18 +44,18 @@ void		drawing_net(int i, int j, t_mlx *mlx)
 	x = 250;
 	y = 250;
 	a = 1;
-	draw_x(i, j, mlx);
-	while (y < (250 + ((500 / i) * i)))
+	draw_x(mlx);
+	while (y < (250 + ((500 / I) * I)))
 	{
-		if (y == (250 + ((500 / i) * a)))
+		if (y == (250 + ((500 / I) * a)))
 		{
-			while (x < (250 + ((500 / j) * j)))
+			while (x < (250 + ((500 / J) * J)))
 				mlx_pixel_put(MLX, WIN, x++, y, 0xFFFFFF);
 			x = 250;
 			a++;
 		}
 		mlx_pixel_put(MLX, WIN, x, y++, 0xFFFFFF);
 	}
-	while (x < (250 + ((500 / j) * j)))
+	while (x < (250 + ((500 / J) * J)))
 		mlx_pixel_put(MLX, WIN, x++, y, 0xFFFFFF);
 }

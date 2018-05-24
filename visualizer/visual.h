@@ -37,9 +37,10 @@ typedef struct	s_mlx
 	int 	j;
 }				t_mlx;
 
-void	drawing_net(int i, int j, t_mlx *mlx);
+void	drawing_net(t_mlx *mlx);
 void	drawing_game(t_mlx *mlx);
 void	check_input(t_mlx *mlx);
-void	write_map(int i, int j, t_mlx *mlx);
+void	write_map(t_mlx *mlx);
+void	drawing_players(t_mlx *mlx);
 
 #endif
