@@ -55,7 +55,7 @@ int			start_game(t_mlx *mlx)
 	return (0);
 }
 
-static int 	key_hook(int keycode, t_mlx *mlx)
+static int	key_hook(int keycode, t_mlx *mlx)
 {
 	if (keycode == 53)
 	{
@@ -67,12 +67,12 @@ static int 	key_hook(int keycode, t_mlx *mlx)
 	return (0);
 }
 
-static int 	exit_x(int keycode)
+static int	exit_x(int keycode)
 {
-	exit (0);
+	exit(0);
 }
 
-int 		main(void)
+int			main(void)
 {
 	t_mlx	*mlx;
 
@@ -89,16 +89,13 @@ int 		main(void)
 	MLX = mlx_init();
 	WIN = mlx_new_window(MLX, 1000, 1000, "FILLER");
 	drawing_players(mlx);
-	mlx_string_put(MLX, WIN, 350, 800, 0xFFFFFF, "Press SPACE to start the game!");
+	mlx_string_put(MLX, WIN, 350, 800, 0xFFFFFF, "Press SPACE ");
+	mlx_string_put(MLX, WIN, 475, 800, 0xFFFFFF, "to start the game!");
 	drawing_net(mlx);
 	drawing_game(mlx);
 	mlx_hook(WIN, 2, 0, key_hook, mlx);
 	mlx_hook(WIN, 17, 1L << 17, exit_x, 0);
 	mlx_loop(MLX);
-	ft_stralldel(MAP, I + 1);
-	free(MAP);
-	free(PLYR_O);
-	free(PLYR_X);
-	free(mlx);
+	freeshka(mlx);
 	return (0);
 }

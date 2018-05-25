@@ -12,6 +12,15 @@
 
 #include "visual.h"
 
+void	freeshka(t_mlx *mlx)
+{
+	ft_stralldel(MAP, I + 1);
+	free(MAP);
+	free(PLYR_O);
+	free(PLYR_X);
+	free(mlx);
+}
+
 void	check_input(t_mlx *mlx)
 {
 	int i;

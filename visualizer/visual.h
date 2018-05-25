@@ -13,8 +13,8 @@
 #ifndef VISUAL_H
 # define VISUAL_H
 
-#include "../libft/libft.h"
-#include <mlx.h>
+# include "../libft/libft.h"
+# include <mlx.h>
 
 # define MLX mlx->mlx_ptr
 # define WIN mlx->win_ptr
@@ -29,18 +29,19 @@ typedef struct	s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	char 	*line;
-	char 	*player_x;
+	char	*line;
+	char	*player_x;
 	char	*player_o;
-	char 	**map;
+	char	**map;
 	int		i;
-	int 	j;
+	int		j;
 }				t_mlx;
 
-void	drawing_net(t_mlx *mlx);
-void	drawing_game(t_mlx *mlx);
-void	check_input(t_mlx *mlx);
-void	write_map(t_mlx *mlx);
-void	drawing_players(t_mlx *mlx);
+void			drawing_net(t_mlx *mlx);
+void			drawing_game(t_mlx *mlx);
+void			check_input(t_mlx *mlx);
+void			write_map(t_mlx *mlx);
+void			drawing_players(t_mlx *mlx);
+void			freeshka(t_mlx *mlx);
 
 #endif
