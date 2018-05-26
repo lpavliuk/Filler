@@ -33,7 +33,7 @@ territory).
 anymore or it has been wrongly placed.
 
 
-__I made my player which calls "opavliuk.filler" and like a bonus, I made visualizer.__
+__I made my own player which calls "opavliuk.filler"! And for bonus: I made visualizer!__
 
 In directory "resources" there are:
 
