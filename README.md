@@ -46,3 +46,11 @@ In directory "resources" there are:
 __Usage:__
 
 __./filler_vm -p1 [name player].filler -p2 [name player].filler -f [map] | ./visualizer__
+
+# Visualizer
+
+<br>
+<img height="500" width="500" src="https://github.com/lpavliuk/Filler/blob/master/sceenshots/Screen%20Shot%202018-08-13%20at%202.00.20%20PM.png" />
+<img height="500" width="500" src="https://github.com/lpavliuk/Filler/blob/master/sceenshots/Screen%20Shot%202018-08-13%20at%202.00.31%20PM.png" />
+<img height="500" width="500" src="https://github.com/lpavliuk/Filler/blob/master/sceenshots/Screen%20Shot%202018-08-13%20at%202.00.50%20PM.png" />
+<br>
