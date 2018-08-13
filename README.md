@@ -51,6 +51,5 @@ __./filler_vm -p1 [name player].filler -p2 [name player].filler -f [map] | ./vis
 
 <br>
 <img height="700" width="700" src="https://github.com/lpavliuk/Filler/blob/master/sceenshots/Screen%20Shot%202018-08-13%20at%202.00.20%20PM.png" />
-<img height="700" width="700" src="https://github.com/lpavliuk/Filler/blob/master/sceenshots/Screen%20Shot%202018-08-13%20at%202.00.31%20PM.png" />
 <img height="700" width="700" src="https://github.com/lpavliuk/Filler/blob/master/sceenshots/Screen%20Shot%202018-08-13%20at%202.00.50%20PM.png" />
 <br>
